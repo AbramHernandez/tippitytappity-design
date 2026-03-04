@@ -5,11 +5,12 @@ tippitytappity is a program to practice typing
 
 ## Data model
 
+```mermaid 
 classDiagram
-    User "1" -- "1" UserProfile
-    UserProfile "1" o-- "many" Badge
-    TypingSession "1" -- "1" TypingAnalyzer
-    TypingSession "1" -- "1" WordBank
+    User -- UserProfile
+    UserProfile -- Badge
+    TypingSession -- TypingAnalyzer
+    TypingSession -- WordBank
 
     class User{
         - name: string
@@ -26,15 +27,15 @@ classDiagram
     }
 
     class UserProfile{
-        - badges: vector~Badge~
+        - badges: vector<Badge>
         + addBadge(badge: Badge)
-        + getBadges() vector~Badge~
+        + getBadges() vector<Badge>
         + getRank() int
     }
 
     class TypingSession{
-        - keystrokes: vector~char~
-        - wordsTyped: vector~string~
+        - keystrokes: vector<char>
+        - wordsTyped: vector<string>
         - startTime: datetime
         - endTime: datetime
         + start()
@@ -50,8 +51,10 @@ classDiagram
     }
 
     class WordBank{
-        - words: vector~string~
+        - words: vector<string>
         + loadWords(source: string)
         + getRandomWord() string
-        + getPhrase(length: int) vector~string~
+        + getPhrase(length: int) vector<string>
     }
+
+```
